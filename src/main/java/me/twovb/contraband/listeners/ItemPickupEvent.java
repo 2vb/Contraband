@@ -1,9 +1,9 @@
 package me.twovb.contraband.listeners;
 
 import me.twovb.contraband.Contraband;
-import me.twovb.contraband.utils.CC;
-
+import me.twovb.contraband.utils.Utils;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,12 +14,13 @@ public class ItemPickupEvent implements Listener {
   @EventHandler
   public void onItemPickup(EntityPickupItemEvent event) {
     Player player = (Player) event.getEntity();
-    Material item = event.getItem().getItemStack().getType();
-    // player.sendMessage(String.valueOf(item));
+    Material itemType = event.getItem().getItemStack().getType();
     for (String droppedItem : Contraband.getInstance().getConfig().getStringList("items")) {
-      if (Material.getMaterial(droppedItem) == item) {
-        player.sendMessage(CC.translate(Contraband.getInstance().getConfig().getString("messages.pickup")));
+      if (Material.getMaterial(droppedItem) == itemType) {
+        player.sendMessage(
+            Utils.translate(Contraband.getInstance().getConfig().getString("messages.pickup")));
       }
     }
+    Utils.removeItem(player, itemType);
   }
 }
