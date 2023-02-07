@@ -1,0 +1,4 @@
+name: Contraband
+version: '${project.version}'
+main: me.twovb.contraband.Contraband
+api-version: 1.19
