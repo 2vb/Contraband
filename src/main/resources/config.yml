@@ -2,3 +2,6 @@ enabled: true
 items:
   - BEDROCK
   - BARRIER
+messages:
+  pickup: "&c⚠ You picked up a disallowed item! This item has been removed from your inventory. ⚠"
+  detect: "&c⚠ A disallowed item has been detected! This item has been removed from your inventory. ⚠"
