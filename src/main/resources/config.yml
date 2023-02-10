@@ -12,4 +12,3 @@ messages:
     remove:
       success: "&c✔ %item% has been unmarked as contraband. ✔"
     usage: "&7[&c✖&7] /contraband <add/list/remove>"
-
