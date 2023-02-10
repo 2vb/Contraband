@@ -6,6 +6,8 @@ import me.twovb.contraband.listeners.ItemPickupEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.logging.Level;
+
 public final class Contraband extends JavaPlugin {
 
     @Getter
@@ -33,4 +35,9 @@ public final class Contraband extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
     }
+
+    public void log(String string) {
+       getLogger().log(Level.INFO, string);
+    }
+
 }
