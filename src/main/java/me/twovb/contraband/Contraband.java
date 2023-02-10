@@ -1,38 +1,36 @@
 package me.twovb.contraband;
 
 import lombok.Getter;
-//import me.twovb.contraband.commands.TestCommand;
+import me.twovb.contraband.commands.ContrabandCommand;
 import me.twovb.contraband.listeners.ItemPickupEvent;
-
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Contraband extends JavaPlugin {
 
-  @Getter
-  private static Contraband instance;
+    @Getter
+    private static Contraband instance;
 
-  @Override
-  public void onEnable() {
-    instance = this;
-    this.saveDefaultConfig();
-    // registerCommands();
-    registerEvents();
-  }
+    @Override
+    public void onEnable() {
+        instance = this;
+        this.saveDefaultConfig();
+        registerCommands();
+        registerEvents();
+    }
 
-  private void registerEvents() {
-    PluginManager pm = getServer().getPluginManager();
-    pm.registerEvents(new ItemPickupEvent(), this);
-  }
+    private void registerEvents() {
+        PluginManager pm = getServer().getPluginManager();
+        pm.registerEvents(new ItemPickupEvent(), this);
+    }
 
-  // private void registerCommands() {
-  // getCommand("test").setExecutor(new TestCommand());
-  // getCommand("test").setTabCompleter(new TestCommand());
-  // }
+    private void registerCommands() {
+        getCommand("contraband").setExecutor(new ContrabandCommand());
+        getCommand("contraband").setTabCompleter(new ContrabandCommand());
+    }
 
-  @Override
-  public void onDisable() {
-    // Plugin shutdown logic
-  }
+    @Override
+    public void onDisable() {
+        // Plugin shutdown logic
+    }
 }
