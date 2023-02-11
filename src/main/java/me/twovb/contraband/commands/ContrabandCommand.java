@@ -18,7 +18,6 @@ public class ContrabandCommand implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
             list.add("add");
             list.add("remove");
-            list.add("list");
         }
         return list;
     }
@@ -50,9 +49,6 @@ public class ContrabandCommand implements CommandExecutor, TabCompleter {
                     } else {
                         sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.invalid")));
                     }
-                    break;
-                case "list":
-                    sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.commands.remove")));
                     break;
                 default:
                     sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.commands.usage")));
