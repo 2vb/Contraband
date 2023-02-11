@@ -15,6 +15,7 @@ public class Utils {
     }
 
     public static void removeItem(Player player, Material material) {
+        // @TODO fix this function removing all items in inventory
         Inventory i = player.getInventory();
         for (ItemStack item : i.getContents()) {
             if (item != null) {
