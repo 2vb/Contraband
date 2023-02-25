@@ -3,16 +3,13 @@ package me.twovb.contraband.listeners;
 import me.twovb.contraband.Contraband;
 import me.twovb.contraband.utils.Utils;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
 
 import java.util.List;
-import java.util.logging.Level;
 
 public class ItemPickupEvent implements Listener {
 
@@ -24,7 +21,8 @@ public class ItemPickupEvent implements Listener {
         List<String> contrabandList = Contraband.getInstance().getConfig().getStringList("items");
         for (String droppedItem : contrabandList) {
             if (Material.getMaterial(droppedItem) != item) continue;
-            Utils.removeItem((Player) player, Material.valueOf(droppedItem));
+//            Utils.removeItem((Player) player, Material.valueOf(droppedItem));
+            Utils.removeItem((Player) player);
             event.getItem().remove();
             player.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.pickup")));
             event.setCancelled(true);

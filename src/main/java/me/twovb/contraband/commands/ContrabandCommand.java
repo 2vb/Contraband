@@ -17,6 +17,7 @@ public class ContrabandCommand implements CommandExecutor, TabCompleter {
         List<String> list = new ArrayList<>();
         if (args.length == 1) {
             list.add("add");
+            Contraband.getInstance().log(alias + list + args);
             list.add("remove");
         }
         return list;

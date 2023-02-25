@@ -10,16 +10,18 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 public class Utils {
+
     public static String translate(String string) {
         return ChatColor.translateAlternateColorCodes('&', string);
     }
 
-    public static void removeItem(Player player, Material material) {
+    public static void removeItem(Player player) {
         // @TODO fix this function removing all items in inventory
         Inventory i = player.getInventory();
         for (ItemStack item : i.getContents()) {
-            if (item != null) {
+            if (item != null && disallowed(String.valueOf(item))) {
                 player.getInventory().remove(item);
+                player.sendMessage(translate("remove ${item}").replace("${item}", String.valueOf(item)));
             }
         }
     }
@@ -42,6 +44,17 @@ public class Utils {
         Contraband.getInstance().getConfig().set("items", items);
         Contraband.getInstance().saveConfig();
         Contraband.getInstance().reloadConfig();
+    }
+
+    public static boolean disallowed(String string) {
+        List<String> itemlist = Contraband.getInstance().getConfig().getStringList("items");
+        for (String item : itemlist) {
+            if (item != string) {
+                Contraband.getInstance().log(item);
+                return true;
+            }
+        }
+        return false;
     }
 
 }
