@@ -12,50 +12,63 @@ import java.util.List;
 
 public class ContrabandCommand implements CommandExecutor, TabCompleter {
 
-    @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        List<String> list = new ArrayList<>();
-        if (args.length == 1) {
-            list.add("add");
-            Contraband.getInstance().log(alias + list + args);
-            list.add("remove");
-        }
-        return list;
+  @Override
+  public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+    List<String> list = new ArrayList<>();
+    if (args.length == 1) {
+      list.add("add");
+      list.add("remove");
+      list.add("toggle");
     }
+    return list;
+  }
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length == 0) {
-            sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.commands.usage")));
-        } else {
-            switch (args[0]) {
-                case "add":
-                    if (args.length == 1)
-                        sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.invalid")));
+  @Override
+  public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    if (args.length == 0) {
+      sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.commands.usage")));
+    } else {
+      switch (args[0]) {
+        case "add":
+          if (args.length == 1)
+            sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.invalid")));
 
-                    if (Utils.validItem(args[1])) {
-                        sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.commands.add.success").replace("%item%", args[1])));
-                        Utils.addToList(args[1]);
-                    } else {
-                        sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.invalid")));
-                    }
-                    break;
-                case "remove":
-                    if (args.length == 1)
-                        sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.invalid")));
+          if (Utils.validItem(args[1])) {
+            sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig()
+                .getString("messages.commands.add.success").replace("%item%", args[1])));
+            Utils.addToList(args[1]);
+          } else {
+            sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.invalid")));
+          }
+          break;
+        case "remove":
+          if (args.length == 1)
+            sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.invalid")));
 
-                    if (Utils.validItem(args[1])) {
-                        sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.commands.remove.success").replace("%item%", args[1])));
-                        Utils.removeFromList(args[1]);
-                    } else {
-                        sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.invalid")));
-                    }
-                    break;
-                default:
-                    sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.commands.usage")));
-                    break;
-            }
-        }
-        return false;
+          if (Utils.validItem(args[1])) {
+            sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig()
+                .getString("messages.commands.remove.success").replace("%item%", args[1])));
+            Utils.removeFromList(args[1]);
+          } else {
+            sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.invalid")));
+          }
+          break;
+        case "toggle":
+          boolean enabled = Contraband.getInstance().getConfig().getBoolean("enabled");
+          Contraband.getInstance().getConfig().set("enabled", enabled ? true : false);
+          Contraband.getInstance().saveConfig();
+          Contraband.getInstance().reloadConfig();
+          sender.sendMessage(
+              Utils.translate(
+                  (enabled ? Contraband.getInstance().getConfig().getString("messages.commands.toggle.enable")
+                      : Contraband.getInstance().getConfig().getString("messages.commands.toggle.disable"))));
+          break;
+        default:
+          sender
+              .sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.commands.usage")));
+          break;
+      }
     }
+    return false;
+  }
 }

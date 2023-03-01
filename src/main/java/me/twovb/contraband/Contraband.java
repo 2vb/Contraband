@@ -10,34 +10,34 @@ import java.util.logging.Level;
 
 public final class Contraband extends JavaPlugin {
 
-    @Getter
-    private static Contraband instance;
+  @Getter
+  private static Contraband instance;
 
-    @Override
-    public void onEnable() {
-        instance = this;
-        this.saveDefaultConfig();
-        registerCommands();
-        registerEvents();
-    }
+  @Override
+  public void onEnable() {
+    instance = this;
+    this.saveDefaultConfig();
+    registerCommands();
+    registerEvents();
+  }
 
-    private void registerEvents() {
-        PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(new ItemPickupEvent(), this);
-    }
+  private void registerEvents() {
+    PluginManager pm = getServer().getPluginManager();
+    pm.registerEvents(new ItemPickupEvent(), this);
+  }
 
-    private void registerCommands() {
-        getCommand("contraband").setExecutor(new ContrabandCommand());
-        getCommand("contraband").setTabCompleter(new ContrabandCommand());
-    }
+  private void registerCommands() {
+    getCommand("contraband").setExecutor(new ContrabandCommand());
+    getCommand("contraband").setTabCompleter(new ContrabandCommand());
+  }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
+  @Override
+  public void onDisable() {
+    // Plugin shutdown logic
+  }
 
-    public void log(String string) {
-       getLogger().log(Level.INFO, string);
-    }
+  public void log(String string) {
+    getLogger().log(Level.INFO, string);
+  }
 
 }

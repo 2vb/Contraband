@@ -16,4 +16,7 @@ messages:
       success: "&a✔ %item% has been marked as contraband. ✔"
     remove:
       success: "&c✔ %item% has been unmarked as contraband. ✔"
-    usage: "&7[&c✖&7] /contraband <add/list/remove>"
+    usage: "&7[&c✖&7] /contraband <add/remove/toggle>"
+    toggle:
+      enable: "&7[&c✖&7] &aContraband will now be removed from players."
+      disable: "&7[&c✖&7] &cContraband will no longer be removed from players."
