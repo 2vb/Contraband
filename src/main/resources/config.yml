@@ -1,12 +1,4 @@
 enabled: true
-items:
-  - BEDROCK
-  - BARRIER
-  - COMMAND_BLOCK
-  - DEBUG_STICK
-  - REPEATING_COMMAND_BLOCK
-  - CHAIN_COMMAND_BLOCK
-  - STRUCTURE_BLOCK
 messages:
   pickup: "&c⚠ You picked up a disallowed item! This item has been removed from your inventory. ⚠"
   detect: "&c⚠ A disallowed item has been detected! This item has been removed from your inventory. ⚠"
