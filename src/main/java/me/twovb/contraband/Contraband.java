@@ -28,7 +28,7 @@ public final class Contraband extends JavaPlugin {
     this.saveDefaultConfig();
     registerCommands();
     registerEvents();
-    createItemsFile();
+    loadItems();
   }
 
   public FileConfiguration getItems() {
@@ -45,7 +45,7 @@ public final class Contraband extends JavaPlugin {
     getCommand("contraband").setTabCompleter(new ContrabandCommand());
   }
 
-  private void createItemsFile() {
+  private void loadItems() {
     itemsFile = new File(getDataFolder(), "items.yml");
     if (!itemsFile.exists()) {
       itemsFile.getParentFile().mkdirs();
@@ -63,10 +63,6 @@ public final class Contraband extends JavaPlugin {
   @Override
   public void onDisable() {
     // Plugin shutdown logic
-  }
-
-  public void log(String string) {
-    getLogger().log(Level.INFO, string);
   }
 
 }

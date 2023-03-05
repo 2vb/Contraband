@@ -13,20 +13,22 @@ import java.util.List;
 
 public class ItemPickupEvent implements Listener {
 
-    @EventHandler
-    public void onItemPickup(EntityPickupItemEvent event) {
-        if (!(event.getEntity() instanceof Player)) return;
-        LivingEntity player = event.getEntity();
-        Material item = event.getItem().getItemStack().getType();
-        List<String> contrabandList = Contraband.getInstance().getConfig().getStringList("items");
-        for (String droppedItem : contrabandList) {
-            if (Material.getMaterial(droppedItem) != item) continue;
-//            Utils.removeItem((Player) player, Material.valueOf(droppedItem));
-            Utils.removeItem((Player) player);
-            event.getItem().remove();
-            player.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.pickup")));
-            event.setCancelled(true);
-        }
+  @EventHandler
+  public void onItemPickup(EntityPickupItemEvent event) {
+    if (!(event.getEntity() instanceof Player))
+      return;
+    LivingEntity player = event.getEntity();
+    Material item = event.getItem().getItemStack().getType();
+    List<String> contrabandList = Contraband.getInstance().getItems().getStringList("items");
+    for (String droppedItem : contrabandList) {
+      if (Material.getMaterial(droppedItem) != item)
+        continue;
+      // Utils.removeItems((Player) player, event.getItem().getItemStack());
+      Utils.removeItems((Player) player);
+      event.getItem().remove();
+      player.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.pickup")));
+      event.setCancelled(true);
     }
+  }
 
 }

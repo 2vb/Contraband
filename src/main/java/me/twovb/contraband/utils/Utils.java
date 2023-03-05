@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.logging.Level;
 import java.util.List;
 
 public class Utils {
@@ -15,15 +16,24 @@ public class Utils {
     return ChatColor.translateAlternateColorCodes('&', string);
   }
 
-  public static void removeItem(Player player) {
+  // public static void removeItems(Player player, ItemStack item) {
+  // Inventory inv = player.getInventory();
+  // Contraband.getInstance().log("attempt remove " + item);
+  // for (ItemStack is : inv.getContents()) {
+  // inv.removeItem(is);
+  // Contraband.getInstance().log("remove " + item);
+  // }
+  // }
+
+  public static void removeItems(Player player) {
     // @TODO fix this function removing all items in inventory
     Inventory i = player.getInventory();
     for (ItemStack item : i.getContents()) {
-      if (item != null && disallowed(String.valueOf(item))) {
-        player.getInventory().remove(item);
-        if (disallowed(String.valueOf(item)))
-          Contraband.getInstance().log("disallowed");
-        player.sendMessage(translate("remove ${item}").replace("${item}", String.valueOf(item)));
+      if (item != null) {
+        if (disallowed(String.valueOf(item))) {
+          log(String.valueOf(item));
+        }
+        i.removeItem(item);
       }
     }
   }
@@ -52,11 +62,15 @@ public class Utils {
     List<String> itemlist = Contraband.getInstance().getConfig().getStringList("items");
     for (String item : itemlist) {
       if (item != string) {
-        Contraband.getInstance().log(item);
+        log(item);
         return true;
       }
     }
     return false;
+  }
+
+  public static void log(String string) {
+    Contraband.getInstance().getLogger().log(Level.INFO, string);
   }
 
 }
