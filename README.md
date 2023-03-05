@@ -9,10 +9,6 @@ Easily keep players from having banned items in their inventory!
 
     1. Download this plugin from [link] and add it to your server's plugins folder!
     2. Restart your server!
-    
-## Configuration
-
-You can configure this plugin with in game commands or with the `plugin.yml` file.
 
 ### Default Config
 ```yaml
