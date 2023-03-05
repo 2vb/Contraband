@@ -24,7 +24,9 @@ public class ItemPickupEvent implements Listener {
       if (Material.getMaterial(droppedItem) != item)
         continue;
       // Utils.removeItems((Player) player, event.getItem().getItemStack());
-      Utils.removeItems((Player) player);
+      // Utils.removeItems((Player) player);
+      Utils.log(String.valueOf(item) + " event class smilew");
+      Utils.disallowed(String.valueOf(item));
       event.getItem().remove();
       player.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.pickup")));
       event.setCancelled(true);

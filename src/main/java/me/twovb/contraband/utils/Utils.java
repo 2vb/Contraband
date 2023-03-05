@@ -30,10 +30,12 @@ public class Utils {
     Inventory i = player.getInventory();
     for (ItemStack item : i.getContents()) {
       if (item != null) {
-        if (disallowed(String.valueOf(item))) {
-          log(String.valueOf(item));
+        if (disallowed(String.valueOf(item.getType()))) {
+          log(item.getType() + " disallowed");
+          i.removeItem(item);
+          log("remove " + item.getType());
         }
-        i.removeItem(item);
+        log(String.valueOf(item.getType()));
       }
     }
   }
@@ -59,10 +61,12 @@ public class Utils {
   }
 
   public static boolean disallowed(String string) {
-    List<String> itemlist = Contraband.getInstance().getConfig().getStringList("items");
+    // List<String> itemlist =
+    // Contraband.getInstance().getConfig().getStringList("items");
+    List<String> itemlist = Contraband.getInstance().getItems().getStringList("items");
     for (String item : itemlist) {
       if (item != string) {
-        log(item);
+        log("item " + item + ": string " + string);
         return true;
       }
     }
