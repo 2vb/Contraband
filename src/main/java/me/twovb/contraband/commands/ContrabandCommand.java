@@ -55,13 +55,13 @@ public class ContrabandCommand implements CommandExecutor, TabCompleter {
           break;
         case "toggle":
           boolean enabled = Contraband.getInstance().getConfig().getBoolean("enabled");
-          Contraband.getInstance().getConfig().set("enabled", enabled ? true : false);
+          Contraband.getInstance().getConfig().set("enabled", !enabled ? true : false);
           Contraband.getInstance().saveConfig();
           Contraband.getInstance().reloadConfig();
           sender.sendMessage(
               Utils.translate(
-                  (enabled ? Contraband.getInstance().getConfig().getString("messages.commands.toggle.enable")
-                      : Contraband.getInstance().getConfig().getString("messages.commands.toggle.disable"))));
+                  (enabled ? Contraband.getInstance().getConfig().getString("messages.commands.toggle.disable")
+                      : Contraband.getInstance().getConfig().getString("messages.commands.toggle.enable"))));
           break;
         default:
           sender
