@@ -34,9 +34,6 @@ public final class Contraband extends JavaPlugin {
     Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
       @Override
       public void run() {
-        if (Bukkit.getOnlinePlayers() <= 0) {
-          this.cancel();
-        }
         Utils.log("a");
       }
     }, 6000, getConfig().getInt("minutes-between-checks") * 1200);

@@ -53,8 +53,6 @@ public class Utils {
       if (item != is.getType().toString()) {
         if (Material.getMaterial(item) != is.getType())
           continue;
-        log(item + " a");
-        log(is.getType().toString());
         return true;
       }
     }

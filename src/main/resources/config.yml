@@ -4,8 +4,8 @@ enabled: true
 minutes-between-checks: 5
 
 messages:
-  pickup: "&c⚠ You picked up a disallowed item! This item has been removed from your inventory. ⚠"
-  detect: "&c⚠ A disallowed item has been detected! This item has been removed from your inventory. ⚠"
+#  pickup: "&c⚠ You picked up a disallowed item! This item has been removed from your inventory. ⚠"
+  detect: "&c⚠ A disallowed item has been detected! Detected contraband has been removed from your inventory. ⚠"
   invalid: "&c✖ Invalid item. Please make sure you are providing a valid item. &c✖"
   commands:
     add:
