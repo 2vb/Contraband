@@ -1,4 +1,8 @@
 enabled: true
+
+# How often players' inventories will be checked for contraband.
+minutes-between-checks: 5
+
 messages:
   pickup: "&c⚠ You picked up a disallowed item! This item has been removed from your inventory. ⚠"
   detect: "&c⚠ A disallowed item has been detected! This item has been removed from your inventory. ⚠"

@@ -3,12 +3,15 @@ package me.twovb.contraband;
 import lombok.Getter;
 import me.twovb.contraband.commands.ContrabandCommand;
 import me.twovb.contraband.listeners.ItemPickupEvent;
+import me.twovb.contraband.utils.Utils;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +31,15 @@ public final class Contraband extends JavaPlugin {
     registerCommands();
     registerEvents();
     loadItems();
+    Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
+      @Override
+      public void run() {
+        if (Bukkit.getOnlinePlayers() <= 0) {
+          this.cancel();
+        }
+        Utils.log("a");
+      }
+    }, 6000, getConfig().getInt("minutes-between-checks") * 1200);
   }
 
   public FileConfiguration getItems() {
