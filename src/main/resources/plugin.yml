@@ -6,6 +6,8 @@ author: 2vb
 commands:
   contraband:
     description: Manage the server's contraband.
+  test:
+    description: debug command
 permissions:
   contraband.manage:
     description: Allows players to manage contraband.
