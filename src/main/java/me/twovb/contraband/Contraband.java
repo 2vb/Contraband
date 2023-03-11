@@ -80,7 +80,6 @@ public final class Contraband extends JavaPlugin {
             itemsFileConfig.load(itemsFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
-
         }
     }
 

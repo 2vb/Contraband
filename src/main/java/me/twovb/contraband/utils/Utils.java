@@ -50,6 +50,7 @@ public class Utils {
         List<String> itemlist = Contraband.getInstance().getItems().getStringList("items");
         for (String item : itemlist) {
             if (item != is.getType().toString()) {
+                log(item);
                 if (Material.getMaterial(item) != is.getType()) continue;
                 return true;
             }
