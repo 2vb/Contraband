@@ -1,6 +1,5 @@
 package me.twovb.contraband;
 
-import jdk.incubator.vector.VectorOperators;
 import lombok.Getter;
 import me.twovb.contraband.commands.ContrabandCommand;
 import me.twovb.contraband.commands.TestCommand;
@@ -12,6 +11,8 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -37,11 +38,17 @@ public final class Contraband extends JavaPlugin {
             @Override
             public void run() {
                 if (Bukkit.getOnlinePlayers().size() == 0) return;
-                // remove code
                 for (Player player : Bukkit.getOnlinePlayers()) {
-                    Utils.removeItems(player);
+                    Inventory i = player.getInventory();
+                    for (ItemStack item : i.getContents()) {
+                        if (item == null) return;
+                        if (Utils.disallowed(item)) {
+                            Utils.removeItems(player);
+                            player.sendMessage(Utils.translate(getConfig().getString("messages.detect")));
+                        }
+                    }
+                    Utils.log("remove items");
                 }
-                Utils.log("remove items");
             }
         }, 1250, getConfig().getInt("minutes-between-checks") * 1200L);
     }

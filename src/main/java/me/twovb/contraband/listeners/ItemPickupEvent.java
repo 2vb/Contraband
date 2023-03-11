@@ -27,10 +27,9 @@ public class ItemPickupEvent implements Listener {
         continue;
       Utils.removeItems((Player) player);
       event.getItem().remove();
-//      player.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.detect")));
+      player.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.detect")));
       event.setCancelled(true);
     }
-//    Utils.log(String.valueOf(contrabandList));
   }
 
 }

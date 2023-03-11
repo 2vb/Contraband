@@ -24,7 +24,6 @@ public class Utils {
                 i.remove(item);
             }
         }
-        player.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.detect")));
     }
 
     public static boolean validItem(String string) {
