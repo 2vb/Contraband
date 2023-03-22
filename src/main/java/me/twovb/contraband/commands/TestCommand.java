@@ -12,6 +12,7 @@ public class TestCommand implements CommandExecutor {
         if (!(sender instanceof Player)) return false;
         Utils.removeItems((Player) sender);
         sender.sendMessage(Utils.translate("attempt remove contraband"));
+//        Utils.log("meow");
         return false;
     }
 }

@@ -35,7 +35,7 @@ public class ContrabandCommand implements CommandExecutor, TabCompleter {
 
           if (Utils.validItem(args[1])) {
             sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig()
-                .getString("messages.commands.add.success").replace("%item%", args[1])));
+                .getString("messages.commands.add").replace("%item%", args[1])));
             Utils.addToList(args[1]);
           } else {
             sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.invalid")));
@@ -47,7 +47,7 @@ public class ContrabandCommand implements CommandExecutor, TabCompleter {
 
           if (Utils.validItem(args[1])) {
             sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig()
-                .getString("messages.commands.remove.success").replace("%item%", args[1])));
+                .getString("messages.commands.remove").replace("%item%", args[1])));
             Utils.removeFromList(args[1]);
           } else {
             sender.sendMessage(Utils.translate(Contraband.getInstance().getConfig().getString("messages.invalid")));

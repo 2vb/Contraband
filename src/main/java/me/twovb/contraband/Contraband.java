@@ -18,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
 
 public final class Contraband extends JavaPlugin {
 
@@ -45,9 +46,9 @@ public final class Contraband extends JavaPlugin {
                         if (Utils.disallowed(item)) {
                             Utils.removeItems(player);
                             player.sendMessage(Utils.translate(getConfig().getString("messages.detect")));
+                            Utils.log("remove items");
                         }
                     }
-                    Utils.log("remove items");
                 }
             }
         }, 1250, getConfig().getInt("minutes-between-checks") * 1200L);
@@ -55,6 +56,14 @@ public final class Contraband extends JavaPlugin {
 
     public FileConfiguration getItems() {
         return this.itemsFileConfig;
+    }
+
+    public void saveItems() {
+        try {
+            getItems().save(this.itemsFile);
+        } catch (IOException var2) {
+            this.getLogger().log(Level.SEVERE, "Could not save config to " + this.itemsFile, var2);
+        }
     }
 
     private void registerEvents() {

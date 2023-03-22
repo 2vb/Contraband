@@ -31,26 +31,24 @@ public class Utils {
     }
 
     public static void addToList(String string) {
-        List<String> items = Contraband.getInstance().getConfig().getStringList("items");
+        List<String> items = Contraband.getInstance().getItems().getStringList("items");
         items.add(string);
-        Contraband.getInstance().getConfig().set("items", items);
-        Contraband.getInstance().saveConfig();
-        Contraband.getInstance().reloadConfig();
+        Contraband.getInstance().getItems().set("items", items);
+        Contraband.getInstance().saveItems();
     }
 
     public static void removeFromList(String string) {
-        List<String> items = Contraband.getInstance().getConfig().getStringList("items");
+        List<String> items = Contraband.getInstance().getItems().getStringList("items");
         items.remove(string);
-        Contraband.getInstance().getConfig().set("items", items);
-        Contraband.getInstance().saveConfig();
-        Contraband.getInstance().reloadConfig();
+        Contraband.getInstance().getItems().set("items", items);
+        Contraband.getInstance().saveItems();
     }
 
     public static boolean disallowed(ItemStack is) {
         List<String> itemlist = Contraband.getInstance().getItems().getStringList("items");
         for (String item : itemlist) {
             if (item != is.getType().toString()) {
-                log(item);
+//                log(item);
                 if (Material.getMaterial(item) != is.getType()) continue;
                 return true;
             }

@@ -5,13 +5,15 @@ minutes-between-checks: 2
 
 messages:
 #  pickup: "&c⚠ You picked up a disallowed item! This item has been removed from your inventory. ⚠"
-  detect: "&c⚠ Contraband was detected and removed from your inventory. ⚠"
-  invalid: "&c✖ Invalid item. Please make sure you are providing a valid item. &c✖"
+#  detect: "&c⚠ Contraband was detected and removed from your inventory. ⚠"
+  detect: "&7[&c✖&7] &cContraband was detected and removed."
+#  invalid: "&c✖ Invalid item. Please make sure you are providing a valid item. &c✖"
+  invalid: "&7[&c✖&7] &cInvalid item. Please provide a valid item ID."
   commands:
-    add:
-      success: "&a✔ %item% has been marked as contraband. ✔"
-    remove:
-      success: "&c✔ %item% has been unmarked as contraband. ✔"
+    add: "&7[&c✖&7] &a%item% is now contraband."
+#      success: "&a✔ %item% has been marked as contraband. ✔"
+    remove: "&7[&c✖&7] &c%item% is no longer contraband."
+#      success: "&c✔ %item% has been unmarked as contraband. ✔"
     usage: "&7[&c✖&7] /contraband <add/remove/toggle>"
     toggle:
       enable: "&7[&c✖&7] &aContraband will now be removed from players."
