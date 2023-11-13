@@ -1,11 +1,11 @@
-package me.twovb.contraband.utils;
+package xyz.twovb.contraband.utils;
 
-import me.twovb.contraband.Contraband;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import xyz.twovb.contraband.Contraband;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -20,9 +20,8 @@ public class Utils {
         Inventory i = player.getInventory();
         for (ItemStack item : i.getContents()) {
             if (item == null) return;
-            if (disallowed(item)) {
-                i.remove(item);
-            }
+            if (!disallowed(item)) continue;
+            i.remove(item);
         }
     }
 
@@ -30,16 +29,13 @@ public class Utils {
         return Material.matchMaterial(string) != null;
     }
 
-    public static void addToList(String string) {
+    public static void addOrRemoveFromList(String string) {
         List<String> items = Contraband.getInstance().getItems().getStringList("items");
-        items.add(string);
-        Contraband.getInstance().getItems().set("items", items);
-        Contraband.getInstance().saveItems();
-    }
-
-    public static void removeFromList(String string) {
-        List<String> items = Contraband.getInstance().getItems().getStringList("items");
-        items.remove(string);
+        if (items.contains(string)) {
+            items.remove(string);
+        } else {
+            items.add(string);
+        }
         Contraband.getInstance().getItems().set("items", items);
         Contraband.getInstance().saveItems();
     }
@@ -48,7 +44,6 @@ public class Utils {
         List<String> itemlist = Contraband.getInstance().getItems().getStringList("items");
         for (String item : itemlist) {
             if (item != is.getType().toString()) {
-//                log(item);
                 if (Material.getMaterial(item) != is.getType()) continue;
                 return true;
             }

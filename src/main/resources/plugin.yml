@@ -1,6 +1,6 @@
 name: Contraband
 version: '${project.version}'
-main: me.twovb.contraband.Contraband
+main: xyz.twovb.contraband.Contraband
 api-version: 1.16
 author: 2vb
 commands:
@@ -11,4 +11,7 @@ commands:
 permissions:
   contraband.manage:
     description: Allows players to manage contraband.
+    default: false
+  contraband.bypass:
+    description: Bypass removal of contraband.
     default: false
